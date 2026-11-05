@@ -1,0 +1,60 @@
+name: 🐞 Bug report
+description: Something does not work as expected
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please do not post passwords, tokens or your public server address.
+  - type: input
+    id: watch
+    attributes:
+      label: Watch model
+      placeholder: Huawei Watch 5
+    validations:
+      required: true
+  - type: input
+    id: os
+    attributes:
+      label: HarmonyOS version on the watch
+      description: Watch → Settings → About
+      placeholder: "6.1.0"
+    validations:
+      required: true
+  - type: input
+    id: app
+    attributes:
+      label: HA Dial version
+      description: HA Dial → Settings → About
+      placeholder: "1.0.0"
+    validations:
+      required: true
+  - type: input
+    id: ha
+    attributes:
+      label: Home Assistant version
+      placeholder: "2026.10.1"
+  - type: dropdown
+    id: network
+    attributes:
+      label: How is the watch connected?
+      options:
+        - Wi-Fi at home
+        - Through the phone (Bluetooth)
+        - eSIM / mobile data
+        - Not sure
+  - type: dropdown
+    id: phone
+    attributes:
+      label: Phone
+      options:
+        - iPhone
+        - Android
+        - Huawei (HarmonyOS)
+  - type: textarea
+    id: steps
+    attributes:
+      label: What happened, and steps to reproduce
+      description: Include the exact error text shown on the watch, if any. A photo of the watch screen helps.
+    validations:
+      required: true

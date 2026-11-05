@@ -1,0 +1,37 @@
+name: 💡 Feature request
+description: Suggest a control, screen or setting for HA Dial
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks! Please check open issues and Discussions first — a 👍 on an existing request counts too.
+        English, Russian or German are fine.
+  - type: dropdown
+    id: area
+    attributes:
+      label: What is it about?
+      options:
+        - New entity type / control (covers, locks, scenes, media players, …)
+        - Dashboards / rooms / navigation
+        - Connection (external address, Nabu Casa, VPN, …)
+        - Settings / appearance
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What would you like?
+      description: The entity domain (for example `cover.living_room`) or screen, and what it should do.
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why / how would you use it?
+  - type: input
+    id: watch
+    attributes:
+      label: Your watch model
+      placeholder: Huawei Watch 5

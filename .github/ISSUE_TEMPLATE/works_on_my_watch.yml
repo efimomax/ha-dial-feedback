@@ -1,0 +1,45 @@
+name: ⌚ Works on my watch
+description: Tell us HA Dial runs (or does not run) on your watch — for the compatibility list
+title: "[Compatibility] "
+labels: ["compatibility"]
+body:
+  - type: input
+    id: watch
+    attributes:
+      label: Watch model
+      placeholder: Huawei Watch Ultimate
+    validations:
+      required: true
+  - type: input
+    id: os
+    attributes:
+      label: HarmonyOS version on the watch
+      placeholder: "6.1.0"
+    validations:
+      required: true
+  - type: dropdown
+    id: result
+    attributes:
+      label: Result
+      options:
+        - Works
+        - Works with problems
+        - Not found in AppGallery / cannot install
+        - Installs but does not work
+    validations:
+      required: true
+  - type: checkboxes
+    id: tested
+    attributes:
+      label: What did you try?
+      options:
+        - label: Demo mode (0.0.0.0, demo/demo)
+        - label: Login to my own Home Assistant
+        - label: Two-factor authentication
+        - label: Automatic server search
+        - label: Lights / switches
+        - label: Thermostat / radiator valve
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes

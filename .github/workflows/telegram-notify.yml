@@ -1,0 +1,49 @@
+# Sends a Telegram message for every new issue, discussion and comment.
+# Needs repository secrets TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID (Settings → Secrets and variables → Actions).
+name: Telegram notify
+
+on:
+  issues:
+    types: [opened]
+  issue_comment:
+    types: [created]
+  discussion:
+    types: [created]
+  discussion_comment:
+    types: [created]
+
+permissions: {}
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    # Skip the owner's own comments.
+    if: github.actor != github.repository_owner || github.event_name == 'issues' || github.event_name == 'discussion'
+    steps:
+      - name: Send message
+        env:
+          TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          EVENT: ${{ github.event_name }}
+          ACTOR: ${{ github.actor }}
+          TITLE: ${{ github.event.issue.title || github.event.discussion.title }}
+          URL: ${{ github.event.comment.html_url || github.event.issue.html_url || github.event.discussion.html_url }}
+          BODY: ${{ github.event.comment.body || github.event.issue.body || github.event.discussion.body }}
+        run: |
+          if [ -z "$TOKEN" ] || [ -z "$CHAT_ID" ]; then
+            echo "Telegram secrets are not set, skipping."
+            exit 0
+          fi
+          case "$EVENT" in
+            issues) KIND="New issue" ;;
+            issue_comment) KIND="Comment on issue" ;;
+            discussion) KIND="New discussion" ;;
+            discussion_comment) KIND="Comment in discussion" ;;
+            *) KIND="$EVENT" ;;
+          esac
+          SNIPPET=$(printf '%s' "$BODY" | head -c 600)
+          TEXT=$(printf 'HA Dial — %s\n%s\nby %s\n\n%s\n\n%s' "$KIND" "$TITLE" "$ACTOR" "$SNIPPET" "$URL")
+          curl -sS --fail -o /dev/null "https://api.telegram.org/bot${TOKEN}/sendMessage" \
+            --data-urlencode "chat_id=${CHAT_ID}" \
+            --data-urlencode "text=${TEXT}" \
+            --data-urlencode "disable_web_page_preview=true"

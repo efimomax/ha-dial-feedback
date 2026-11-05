@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 💬 Ideas and questions (Discussions)
+    url: https://github.com/efimomax/ha-dial-feedback/discussions
+    about: Ask a question or vote for ideas.
+  - name: 🔒 Privacy policy
+    url: https://efimomax.de/hadial/privacy
+    about: What HA Dial does with your data.
