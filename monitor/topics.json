@@ -1,0 +1,30 @@
+{
+  "owner_names": ["efimomax"],
+  "discourse": [
+    {
+      "name": "HA Community: project topic",
+      "base": "https://community.home-assistant.io",
+      "topic_id": 1032660
+    },
+    {
+      "name": "HA Community: App for Harmony Os",
+      "base": "https://community.home-assistant.io",
+      "topic_id": 341119
+    },
+    {
+      "name": "simon42: project topic",
+      "base": "https://community.simon42.com",
+      "topic_id": 95544
+    }
+  ],
+  "reddit": [
+    {
+      "name": "r/homeassistant",
+      "post_id": "1xoq5p9"
+    },
+    {
+      "name": "r/HarmonyOS",
+      "post_id": "1xoq5yn"
+    }
+  ]
+}
